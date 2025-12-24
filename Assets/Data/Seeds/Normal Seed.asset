@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a48fc4efde7c44f8304c22caa30e3f, type: 3}
+  m_Name: Normal Seed
+  m_EditorClassIdentifier: 
+  seedName: tomato
+  plantPrefab: {fileID: 3821054941268316023, guid: cbdc1c7043c47b948abcee66bdcb31c3, type: 3}
+  ghostPrefab: {fileID: 3821054941268316023, guid: cbdc1c7043c47b948abcee66bdcb31c3, type: 3}
+  maxGrowthDays: 4
