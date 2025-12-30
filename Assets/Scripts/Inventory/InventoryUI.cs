@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -5,25 +6,16 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI Instance;
     public InventorySlot[] slots;
 
-    private void Awake()
+    private void Awake() => Instance = this;
+
+    public void RefreshSlot(InventorySlot slot)
     {
-        Instance = this;
+        if (slot == null) return;
+        slot.SetItem(slot.item);
     }
 
-    public void Refresh()
+    public void RefreshAll()
     {
-        if (slots == null || slots.Length == 0) return;
-
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (i < Inventory.Instance.items.Count)
-            {
-                slots[i].SetItem(Inventory.Instance.items[i]);
-            }
-            else
-            {
-                slots[i].Clear();
-            }
-        }
+        foreach (var slot in slots) slot.SetItem(slot.item);
     }
 }
