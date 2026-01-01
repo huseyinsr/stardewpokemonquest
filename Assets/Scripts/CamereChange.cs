@@ -13,27 +13,18 @@ public class CamereChange : MonoBehaviour
     [SerializeField] private float maxPitch = 60f;
     [SerializeField] private GameObject[] cameraControlButtons;
 
-
     private Quaternion targetRotation;
     private bool isRotating;
     private bool canRotate = true;
     private Coroutine rotationCooldownCoroutine;
 
-    private enum VerticalPosition
-    {
-        Normal,
-        Up,
-        Down
-    }
-
+    private enum VerticalPosition { Normal, Up, Down }
     private VerticalPosition verticalPosition = VerticalPosition.Normal;
 
     private void Start()
     {
         if (mainCamera == null)
-        {
             mainCamera = Camera.main;
-        }
 
         targetRotation = mainCamera.transform.rotation;
     }
@@ -70,20 +61,30 @@ public class CamereChange : MonoBehaviour
             isRotating = false;
         }
 
-        if (ZoomManager.Instance != null)
+        if (ZoomManager.Instance != null && cameraControlButtons != null)
         {
             bool zoomed = ZoomManager.Instance.IsZoomed;
-
-            if (cameraControlButtons != null)
-            {
-                for (int i = 0; i < cameraControlButtons.Length; i++)
-                {
-                    if (cameraControlButtons[i] != null)
-                        cameraControlButtons[i].SetActive(!zoomed);
-                }
-            }
+            foreach (var btn in cameraControlButtons)
+                if (btn != null) btn.SetActive(!zoomed);
         }
+    }
 
+    public void SetBaseRotation(Quaternion newBaseRotation)
+    {
+        targetRotation = newBaseRotation;
+        isRotating = false;
+    }
+
+    public Quaternion GetCurrentTargetRotation()
+    {
+        return targetRotation;
+    }
+
+    public void ResetRotationToBase(Quaternion baseRotation)
+    {
+        targetRotation = baseRotation;
+        mainCamera.transform.rotation = baseRotation;
+        isRotating = false;
     }
 
     public void OnLeftButtonClicked()
@@ -101,7 +102,6 @@ public class CamereChange : MonoBehaviour
     public void OnUpButtonClicked()
     {
         ExitZoomIfNeeded();
-
         if (verticalPosition == VerticalPosition.Normal)
         {
             if (TryApplyPitchDelta(-verticalStepDegrees))
@@ -117,7 +117,6 @@ public class CamereChange : MonoBehaviour
     public void OnDownButtonClicked()
     {
         ExitZoomIfNeeded();
-
         if (verticalPosition == VerticalPosition.Normal)
         {
             if (TryApplyPitchDelta(verticalStepDegrees))
@@ -130,32 +129,10 @@ public class CamereChange : MonoBehaviour
         }
     }
 
-    public void OnleftButtonlicked()
-    {
-        OnLeftButtonClicked();
-    }
-
-    public void OnrightButtonlicked()
-    {
-        OnRightButtonClicked();
-    }
-
-    public void OnupButtonlicked()
-    {
-        OnUpButtonClicked();
-    }
-
-    public void OndownButtonlicked()
-    {
-        OnDownButtonClicked();
-    }
-
     private void ExitZoomIfNeeded()
     {
         if (ZoomManager.Instance != null && ZoomManager.Instance.IsZoomed)
-        {
             ZoomManager.Instance.ExitZoom();
-        }
     }
 
     private void ApplyYawDelta(float deltaDegrees)
@@ -166,7 +143,6 @@ public class CamereChange : MonoBehaviour
         euler.y = NormalizeAngle(euler.y + deltaDegrees);
         targetRotation = Quaternion.Euler(euler);
         isRotating = true;
-
         RestartCooldown();
     }
 
@@ -180,7 +156,6 @@ public class CamereChange : MonoBehaviour
         euler.x = NormalizeAngle(signedPitch);
         targetRotation = Quaternion.Euler(euler);
         isRotating = true;
-
         RestartCooldown();
         return true;
     }

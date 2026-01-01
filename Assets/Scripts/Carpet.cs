@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class CarpetOnceHide : MonoBehaviour
+public class Carpet : MonoBehaviour
 {
     private Renderer _renderer;
     private Collider _collider;
-    private bool _hidden = false;
+    private bool _hidden;
 
     private void Awake()
     {
@@ -18,8 +18,7 @@ public class CarpetOnceHide : MonoBehaviour
         if (_hidden) return;
 
         _hidden = true;
-
-        _renderer.enabled = false;  
-        _collider.enabled = false; 
+        _renderer.enabled = false;
+        _collider.enabled = false;
     }
 }

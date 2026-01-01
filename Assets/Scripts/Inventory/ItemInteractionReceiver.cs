@@ -2,15 +2,23 @@
 
 public class ItemInteractionReceiver : MonoBehaviour
 {
-    public ItemPrefabMapping[] itemPrefabMappings;
-    public bool requiresZoom = true;
-    public float minZoomTime = 0.2f;
+    [Header("Item Mapping")]
+    [SerializeField] private ItemPrefabMapping[] itemPrefabMappings;
 
-    private bool[] usedFlags;
+    [Header("Spawn Settings")]
+    [SerializeField] private Transform[] spawnPoints;
+
+    [Header("Zoom Requirement")]
+    [SerializeField] private bool requiresZoom = true;
+    [SerializeField] private float minZoomTime = 0.2f;
+
+    private bool[] usedItemFlags;
+    private bool[] usedSpawnFlags;
 
     private void Awake()
     {
-        usedFlags = new bool[itemPrefabMappings.Length];
+        usedItemFlags = new bool[itemPrefabMappings.Length];
+        usedSpawnFlags = new bool[spawnPoints.Length];
     }
 
     private void OnMouseDown()
@@ -24,20 +32,46 @@ public class ItemInteractionReceiver : MonoBehaviour
         InventorySlot selectedSlot = Inventory.Instance.GetSelectedSlot();
         if (selectedSlot == null || selectedSlot.IsEmpty()) return;
 
-        int index = System.Array.FindIndex(
+        int itemIndex = System.Array.FindIndex(
             itemPrefabMappings,
             m => m.item == selectedSlot.item
         );
 
-        if (index == -1) return;
-        if (usedFlags[index]) return;
+        if (itemIndex == -1) return;
+        if (usedItemFlags[itemIndex]) return;
 
-        if (itemPrefabMappings[index].prefab != null)
+        int spawnIndex = GetNextFreeSpawnPointIndex();
+        if (spawnIndex == -1)
         {
-            Instantiate(itemPrefabMappings[index].prefab, transform.position, transform.rotation);
+            Debug.LogWarning("No free spawn point available!");
+            return;
         }
 
-        usedFlags[index] = true;
+        Transform spawnPoint = spawnPoints[spawnIndex];
+
+        if (itemPrefabMappings[itemIndex].prefab != null)
+        {
+            Instantiate(
+                itemPrefabMappings[itemIndex].prefab,
+                spawnPoint.position,
+                spawnPoint.rotation
+            );
+        }
+
+        usedItemFlags[itemIndex] = true;
+        usedSpawnFlags[spawnIndex] = true;
+
         Inventory.Instance.RemoveItem(selectedSlot);
+    }
+
+    private int GetNextFreeSpawnPointIndex()
+    {
+        for (int i = 0; i < usedSpawnFlags.Length; i++)
+        {
+            if (!usedSpawnFlags[i])
+                return i;
+        }
+
+        return -1;
     }
 }

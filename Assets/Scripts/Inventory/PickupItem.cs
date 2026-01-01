@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PickupItem : MonoBehaviour
 {
-    public ItemData item;
+    [SerializeField] private ItemData item;
 
     private void OnMouseDown()
     {

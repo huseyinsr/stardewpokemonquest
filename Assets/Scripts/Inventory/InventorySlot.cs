@@ -4,8 +4,9 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
-    public Image icon;
-    public ItemData item;
+    [SerializeField] private Image icon;
+    [SerializeField] public ItemData item;
+
     private Color normalColor = Color.white;
     private Color selectedColor = Color.yellow;
     public bool isSelected;

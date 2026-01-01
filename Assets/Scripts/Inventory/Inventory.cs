@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
-    public List<InventorySlot> slots = new List<InventorySlot>();
+    [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
 
     private void Awake() => Instance = this;
 

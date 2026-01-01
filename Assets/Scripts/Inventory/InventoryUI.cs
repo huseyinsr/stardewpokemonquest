@@ -1,10 +1,9 @@
-
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI Instance;
-    public InventorySlot[] slots;
+    [SerializeField] private InventorySlot[] slots;
 
     private void Awake() => Instance = this;
 

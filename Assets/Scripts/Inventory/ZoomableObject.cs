@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ZoomableObject : MonoBehaviour
 {
-    public CameraPosition cameraPosition;
+    [SerializeField] private CameraPosition cameraPosition;
 
     private void OnMouseDown()
     {
