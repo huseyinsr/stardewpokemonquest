@@ -43,7 +43,7 @@ public class ItemInteractionReceiver : MonoBehaviour
         int spawnIndex = GetNextFreeSpawnPointIndex();
         if (spawnIndex == -1)
         {
-            Debug.LogWarning("No free spawn point available!");
+            Debug.LogWarning("No free spawn point available");
             return;
         }
 

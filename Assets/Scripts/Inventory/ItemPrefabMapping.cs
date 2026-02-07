@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Inventory/ItemPrefabMapping")]
+[CreateAssetMenu(menuName = "InventoryItemPrefabMapping")]
 public class ItemPrefabMapping : ScriptableObject
 {
     [SerializeField] public ItemData item;
