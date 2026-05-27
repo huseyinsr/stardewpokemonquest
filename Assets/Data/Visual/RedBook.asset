@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: RedBook
   itemName: Red Book
-  icon: {fileID: 21300000, guid: a121e48b351b8cd46ac7fe40e429e837, type: 3}
+  icon: {fileID: 21300000, guid: ae57dcfc074c338478c80af012df3340, type: 3}
   description: 

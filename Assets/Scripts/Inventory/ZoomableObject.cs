@@ -6,6 +6,9 @@ public class ZoomableObject : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (UIBlocker.IsPointerOverUI)
+            return;
+
         if (cameraPosition != null && ZoomManager.Instance != null)
         {
             ZoomManager.Instance.ZoomTo(cameraPosition);

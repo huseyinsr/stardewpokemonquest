@@ -8,7 +8,7 @@ public class MovablePoint : MonoBehaviour
     [SerializeField] private FixedPoint[] allFixedPoints;
     [SerializeField] private DragArea dragArea;
 
-    public UnityEvent onEveryPointInCorrectPosition;
+    public static UnityEvent onEveryPointInCorrectPosition = new UnityEvent();
 
     private Camera cam;
     private bool isDragging;

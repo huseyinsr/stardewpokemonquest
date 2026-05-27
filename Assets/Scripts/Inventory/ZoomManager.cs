@@ -42,6 +42,9 @@ public class ZoomManager : MonoBehaviour
 
     private void Update()
     {
+        if (UIBlocker.IsPointerOverUI)
+            return;
+
         if (!IsZoomed || targetCameraPosition == null)
             return;
 
