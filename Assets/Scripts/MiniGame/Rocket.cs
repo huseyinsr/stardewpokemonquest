@@ -12,7 +12,8 @@ public class Rocket : MonoBehaviour
         {
             OnMiniGameWallDetected?.Invoke();
         }
-        else if (other.CompareTag("TrueWall"))
+
+        if (other.CompareTag("TrueWall"))
         {
             OnTrueWallDetected?.Invoke();
         }

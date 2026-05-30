@@ -2,13 +2,10 @@
 
 public class ItemInteractionReceiver : MonoBehaviour
 {
-    [Header("Item Mapping")]
     [SerializeField] private ItemPrefabMapping[] itemPrefabMappings;
-
-    [Header("Spawn Settings")]
     [SerializeField] private Transform[] spawnPoints;
-
-    [Header("Zoom Requirement")]
+    [SerializeField] private bool[] useCustomRotations;
+    [SerializeField] private Vector3[] customRotationAngles;
     [SerializeField] private bool requiresZoom = true;
     [SerializeField] private float minZoomTime = 0.2f;
 
@@ -43,7 +40,7 @@ public class ItemInteractionReceiver : MonoBehaviour
         int spawnIndex = GetNextFreeSpawnPointIndex();
         if (spawnIndex == -1)
         {
-            Debug.LogWarning("No free spawn point available");
+            //Debug.LogWarning("No free spawn point available");
             return;
         }
 
@@ -51,10 +48,20 @@ public class ItemInteractionReceiver : MonoBehaviour
 
         if (itemPrefabMappings[itemIndex].prefab != null)
         {
+            Quaternion finalRotation = spawnPoint.rotation;
+
+            if (useCustomRotations != null && itemIndex < useCustomRotations.Length && useCustomRotations[itemIndex])
+            {
+                if (customRotationAngles != null && itemIndex < customRotationAngles.Length)
+                {
+                    finalRotation = Quaternion.Euler(customRotationAngles[itemIndex]);
+                }
+            }
+
             Instantiate(
                 itemPrefabMappings[itemIndex].prefab,
                 spawnPoint.position,
-                spawnPoint.rotation
+                finalRotation
             );
         }
 

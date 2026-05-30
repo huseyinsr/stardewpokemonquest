@@ -22,6 +22,8 @@ public class BookCaseMovement : MonoBehaviour
     {
         StartCoroutine(MoveRoutine());
         Destroy(cameraPlace);
+        ZoomManager.Instance.ExitZoom();
+
     }
 
     private IEnumerator MoveRoutine()

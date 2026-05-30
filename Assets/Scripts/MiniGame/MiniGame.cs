@@ -18,7 +18,7 @@ public class MiniGame : MonoBehaviour
     [SerializeField] private float minZoomTime = 0.2f;
     [SerializeField] private bool requiresZoom = true;
 
-    [SerializeField] private int requiredTrueWallCount = 5;
+    [SerializeField] private int requiredTrueWallCount = 1;
     private int currentTrueWallCount = 0;
 
     [SerializeField] private float normalShakeMagnitude = 3f;
@@ -156,7 +156,7 @@ public class MiniGame : MonoBehaviour
 
     private void OnMiniGameWallDetected()
     {
-        UnityEngine.Debug.Log("Wall Detected");
+        //UnityEngine.Debug.Log("Wall Detected");
         GameIsActive = false;
         miniGamePanel.SetActive(false);
         ResetMiniGame();
@@ -169,6 +169,7 @@ public class MiniGame : MonoBehaviour
         if (currentTrueWallCount >= requiredTrueWallCount)
         {
             UnityEngine.Debug.Log("gone through all true ways");
+            stepDistance = 0f;
         }
     }
 
