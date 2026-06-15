@@ -8,7 +8,6 @@ public class VaultManager : MonoBehaviour
 
     [SerializeField] private Transform door;
 
-    [Header("Door Target")]
     [SerializeField] private Transform doorTarget;
     [SerializeField] private float doorOpenSpeed = 1f;
 
