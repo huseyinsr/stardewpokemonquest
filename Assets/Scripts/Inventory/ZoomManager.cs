@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ZoomManager : MonoBehaviour
 {
@@ -97,7 +98,7 @@ public class ZoomManager : MonoBehaviour
             originalTargetRotation = camChange.GetCurrentTargetRotation();
 
         if (zoomBackButton != null)
-            zoomBackButton.SetActive(true);
+            StartCoroutine(ShowBackButton());
     }
 
     public void ExitZoom()
@@ -116,6 +117,14 @@ public class ZoomManager : MonoBehaviour
         CamereChange camChange = mainCamera.GetComponent<CamereChange>();
         if (camChange != null)
             camChange.ResetRotationToBase(originalTargetRotation);
+    }
+
+    private IEnumerator ShowBackButton()
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        if (zoomBackButton != null && IsZoomed)
+            zoomBackButton.SetActive(true);
     }
 
     public void OnExitZoomButton()
