@@ -2076,8 +2076,8 @@ GameObject:
   - component: {fileID: 3646907946805533128}
   - component: {fileID: 6199208750344001714}
   - component: {fileID: 3254232925163400494}
-  - component: {fileID: 449428270526497308}
-  - component: {fileID: 7445131973642713612}
+  - component: {fileID: 4971139354112325960}
+  - component: {fileID: -8553990690300550646}
   m_Layer: 0
   m_Name: BrainPrefab
   m_TagString: Untagged
@@ -2093,10 +2093,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7388127977414424408}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9401, y: -0.4977, z: 1.148}
-  m_LocalScale: {x: 0.11741987, y: 0.09396255, z: 0.080762}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -0.0018135611, y: -0.021, z: 1.1459031}
+  m_LocalScale: {x: 0.15, y: 0.12003406, z: 0.10317079}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1561833641705572303}
   - {fileID: 963564733609917536}
@@ -2133,7 +2133,7 @@ Transform:
   - {fileID: 4469079415078177786}
   - {fileID: 8314178951360832666}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!33 &3646907946805533128
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2208,7 +2208,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5858673, y: 1, z: 0.9999999}
   m_Center: {x: -0.00019800344, y: -8.092414e-12, z: 1.0710334e-11}
---- !u!114 &449428270526497308
+--- !u!114 &4971139354112325960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2217,11 +2217,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7388127977414424408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61794329ad79b6946af4ffc226c6274b, type: 3}
+  m_Script: {fileID: 11500000, guid: 56a8f402a3756784f8ef86b12f51569e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPosition: {fileID: 0}
---- !u!114 &7445131973642713612
+  itemID: 1
+--- !u!114 &-8553990690300550646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2230,12 +2230,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7388127977414424408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5974fc522ae0c7f4ab800affe380a5f1, type: 3}
+  m_Script: {fileID: 11500000, guid: b713f44ab82a4fa468442a6d59868065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  requiresZoom: 1
-  minZoomTime: 0.2
+  mainCamera: {fileID: 0}
+  snapDistance: 0.1
+  minY: 0.95
+  maxY: 2
+  minZ: -1.036
+  maxZ: 2.5
 --- !u!1 &7594271327362359921
 GameObject:
   m_ObjectHideFlags: 0
